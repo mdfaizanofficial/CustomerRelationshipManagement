@@ -3,7 +3,14 @@ package com.CustomerRelationshipManagement.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.CustomerRelationshipManagement.entity.Customer;
 import com.CustomerRelationshipManagement.service.CustomerService;
@@ -36,7 +43,7 @@ public class CustomerController {
     }
 
     @PutMapping
-    public ResponseEntity<String> modifyCustomer(@RequestBody Customer customer){
+    public ResponseEntity<String> updateCustomer(@RequestBody Customer customer){
         return customerService.modifyCustomer(customer);
     }
 
@@ -74,4 +81,15 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> getGreaterThanAge(@PathVariable int age){
         return customerService.getGreaterThanAge(age);
     }
+
+    @GetMapping("/getbyemail/{email}")
+    public ResponseEntity<List<Customer>> getByEmail(@PathVariable String email){
+        return customerService.getByEmail(email);
+    }
+
+    @GetMapping("/getbymobilenumber/{mobileNumber}")
+    public ResponseEntity<List<Customer>> getByMobileNumber(@PathVariable String mobileNumber){
+        return customerService.getByMobileNumber(mobileNumber);
+    }
+
 }

@@ -139,4 +139,27 @@ public class CustomerService {
         }
 
     }
+
+    public ResponseEntity<List<Customer>> getByEmail(String email) {
+        try{
+            List<Customer> customers = customerRepo.findByEmail(email);
+            return new ResponseEntity<>(customers, HttpStatus.FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    public ResponseEntity<List<Customer>> getByMobileNumber(String mobileNumber) {
+        try {
+            List<Customer> customers = customerRepo.findByMobileNumber(mobileNumber);
+            return new ResponseEntity<>(customers, HttpStatus.FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 }

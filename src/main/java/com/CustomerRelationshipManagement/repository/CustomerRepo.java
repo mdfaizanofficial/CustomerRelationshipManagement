@@ -17,4 +17,8 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
     @Query("FROM Customer c WHERE c.age > :age")
     List<Customer> findByGreaterThanAge(int age);
+
+    List<Customer> findByEmail(String email);
+
+    List<Customer> findByMobileNumber(String mobileNumber);
 }
